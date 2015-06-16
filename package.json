@@ -1,0 +1,50 @@
+{
+  "name": "google-panorama-by-location",
+  "version": "1.0.0",
+  "description": "gets a Google StreetView by [ lat, lng ]",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Matt DesLauriers",
+    "email": "dave.des@gmail.com",
+    "url": "https://github.com/mattdesl"
+  },
+  "dependencies": {
+    "defined": "^1.0.0",
+    "nets": "^3.1.0"
+  },
+  "devDependencies": {
+    "browserify": "^10.2.4",
+    "faucet": "0.0.1",
+    "tape": "^4.0.0",
+    "testling": "^1.7.1"
+  },
+  "scripts": {
+    "test-node": "node test.js | faucet",
+    "test-browser": "browserify test.js | testling | faucet",
+    "test": "npm run test-node && npm run test-browser"
+  },
+  "keywords": [
+    "lat",
+    "lng",
+    "long",
+    "longitude",
+    "latitude",
+    "pano",
+    "panorama",
+    "panoramic",
+    "id",
+    "street",
+    "view",
+    "image",
+    "google"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Jam3/google-panorama-by-location.git"
+  },
+  "homepage": "https://github.com/Jam3/google-panorama-by-location",
+  "bugs": {
+    "url": "https://github.com/Jam3/google-panorama-by-location/issues"
+  }
+}
