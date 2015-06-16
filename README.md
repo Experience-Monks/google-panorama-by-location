@@ -30,7 +30,7 @@ Gets the panorama data at the given location, where `opt` can be an array of `[ 
 - `location` - the `[ lat, lng ]` array
 - `radius` - the radius to search, defaults to 50
 
-The Node-style callback uses the form `(err, results)`, where `err` will be non-null if one or more street views was found. `results` is an array of data from the request, typically containing `id`, `yaw`, `image_type`, `latitude` and `longitude` fields.
+The Node-style callback uses the form `(err, results)`, where `err` will be undefined if one or more street views was found. `results` is an array of data from the request, typically containing `id`, `yaw`, `image_type`, `latitude` and `longitude` fields.
 
 ## License
 
