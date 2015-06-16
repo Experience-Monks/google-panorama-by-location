@@ -1,6 +1,6 @@
 {
   "name": "google-panorama-by-location",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "gets a Google StreetView by [ lat, lng ]",
   "main": "index.js",
   "license": "MIT",
