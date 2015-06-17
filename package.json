@@ -15,14 +15,17 @@
   },
   "devDependencies": {
     "browserify": "^10.2.4",
+    "budo": "^4.0.0",
     "faucet": "0.0.1",
+    "garnish": "^2.1.3",
     "tape": "^4.0.0",
     "testling": "^1.7.1"
   },
   "scripts": {
     "test-node": "node test.js | faucet",
     "test-browser": "browserify test.js | testling | faucet",
-    "test": "npm run test-node && npm run test-browser"
+    "test": "npm run test-node && npm run test-browser",
+    "start": "budo demo/index.js:bundle.js --live --verbose --dir demo | garnish"
   },
   "keywords": [
     "lat",
