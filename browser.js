@@ -1,15 +1,18 @@
 /*globals google*/
 var defined = require('defined')
 
-module.exports = function panoramaByLocation (opt, cb) {
-  opt = opt || {}
-  if (Array.isArray(opt)) {
-    opt = { location: opt }
-  }
-  var location = opt.location
-  if (!location) {
+module.exports = function panoramaByLocation (location, opt, cb) {
+  if (!location || !Array.isArray(location)) {
     throw new TypeError('must provide location [ lat, lng ]')
   }
+
+  if (typeof opt === 'function') {
+    cb = opt
+    opt = {}
+  }
+
+  opt = opt || {}
+
   var radius = defined(opt.radius, 50)
   var service = opt.service
   if (!service) {

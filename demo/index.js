@@ -1,6 +1,6 @@
 /*globals google*/
 var test = require('tape')
-var panorama = require('../node')
+var panorama = require('../')
 
 var service = new google.maps.StreetViewService()
 var location = [-3.850392, -32.440783]
