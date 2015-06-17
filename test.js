@@ -1,16 +1,14 @@
-var getPanorama = require('./')
+var getPanorama = require('./node')
 var test = require('tape')
 
 test('gets a Google StreetView by [ lat, lng ]', function (t) {
-  t.plan(6)
+  t.plan(4)
 
   getPanorama([ 51.50700703827454, -0.12791916931155356 ], function (err, res) {
     if (err) return t.fail(err)
-    t.deepEqual(res[0].id, 'dXZfBMex9_L7jO2JW3FTdA', 'id')
-    t.deepEqual(res[0].yaw, 134.95367, 'yaw')
-    t.deepEqual(res[0].image_type, 1, 'image_type')
-    t.deepEqual(res[0].latitude, 51.50706735455254, 'lat')
-    t.deepEqual(res[0].longitude, -0.1280162324293091, 'long')
+    t.deepEqual(res.id, 'dXZfBMex9_L7jO2JW3FTdA', 'id')
+    t.deepEqual(res.latitude, 51.50706735455254, 'lat')
+    t.deepEqual(res.longitude, -0.1280162324293091, 'long')
   })
 
   getPanorama({
@@ -18,7 +16,15 @@ test('gets a Google StreetView by [ lat, lng ]', function (t) {
     radius: 50
   }, function (err, res) {
     if (err) return t.fail(err)
-    t.deepEqual(res[0].id, 'dXZfBMex9_L7jO2JW3FTdA', 'id')
+    t.deepEqual(res.id, 'dXZfBMex9_L7jO2JW3FTdA', 'id')
+  })
+})
+
+test('photosphere only works with service', function (t) {
+  t.plan(1)
+  getPanorama([ -21.203982, -159.83700899999997 ], function (err) {
+    if (err) t.ok(true, 'got error')
+    else t.ok(false, 'expected error')
   })
 })
 
