@@ -1,7 +1,7 @@
 /*globals google*/
 var defined = require('defined')
 
-module.exports = function (opt, cb) {
+module.exports = function panoramaByLocation (opt, cb) {
   opt = opt || {}
   if (Array.isArray(opt)) {
     opt = { location: opt }

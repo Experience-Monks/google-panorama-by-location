@@ -29,11 +29,10 @@ In Node, the request uses an undocumented API entry-point, using [nets](https://
 
 [![NPM](https://nodei.co/npm/google-panorama-by-location.png)](https://www.npmjs.com/package/google-panorama-by-location)
 
-#### `panorama(opt, cb)`
+#### `panorama(location, [opt], cb)`
 
-Gets the panorama data at the given location, where `opt` can be an array of `[ latitude, longitude ]` or an options object with:
+Gets the panorama data at the given `location`, which is an array of `[ latitude, longitude ]`. The `opt` object is optional, containing:
 
-- `location` - the `[ lat, lng ]` array
 - `radius` - the radius to search, defaults to 50
 - `service` - (browser only) the Google API `StreetViewService` to use, defaults to a new instance
 

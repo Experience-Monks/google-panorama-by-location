@@ -1,15 +1,14 @@
 /*globals google*/
 var test = require('tape')
-var panorama = require('../')
+var panorama = require('../node')
 
 var service = new google.maps.StreetViewService()
 var location = [-3.850392, -32.440783]
 
 test('should get photosphere data with service', function (t) {
   t.plan(4)
-  panorama({
-    service: service,
-    location: location
+  panorama(location, {
+    service: service
   }, function (err, result) {
     if (err) return t.fail(err)
     t.deepEqual(result.id, 'FIBH8jtubItyC2AUqPhQFw')

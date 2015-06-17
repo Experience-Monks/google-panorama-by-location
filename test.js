@@ -11,8 +11,7 @@ test('gets a Google StreetView by [ lat, lng ]', function (t) {
     t.deepEqual(res.longitude, -0.1280162324293091, 'long')
   })
 
-  getPanorama({
-    location: [ 51.50700703827454, -0.12791916931155356 ],
+  getPanorama([ 51.50700703827454, -0.12791916931155356 ], {
     radius: 50
   }, function (err, res) {
     if (err) return t.fail(err)
@@ -39,8 +38,7 @@ test('fails gracefully', function (t) {
     }
   })
 
-  getPanorama({
-    location: [ 51.50700703827454, -0.12791916931155356 ],
+  getPanorama([ 51.50700703827454, -0.12791916931155356 ], {
     radius: 1
   }, function (err, res) {
     if (err) {

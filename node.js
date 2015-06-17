@@ -1,15 +1,17 @@
 var nets = require('nets')
 var defined = require('defined')
 
-module.exports = function googlePanorama (opt, cb) {
-  opt = opt || {}
-  if (Array.isArray(opt)) {
-    opt = { location: opt }
-  }
-  var location = opt.location
-  if (!location) {
+module.exports = function panoramaByLocation (location, opt, cb) {
+  if (!location || !Array.isArray(location)) {
     throw new TypeError('must provide location [ lat, lng ]')
   }
+
+  if (typeof opt === 'function') {
+    cb = opt
+    opt = {}
+  }
+
+  opt = opt || {}
 
   var radius = defined(opt.radius, 50)
   var url = 'https://cbks0.google.com/cbk?cb_client=apiv3&authuser=0&hl=en&output=polygon&it=1%3A1&rank=closest&ll=' + location[0] + ',' + location[1] + '&radius=' + radius
