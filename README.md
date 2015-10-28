@@ -2,7 +2,7 @@
 
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
-Gets a Google StreetView Panorama by `[ lat, lng ]`. Also features some Node support.
+Gets a Google StreetView Panorama by `[ lat, lng ]`, supports API v3.20-v3.22. Also features some Node support.
 
 ```js
 var panorama = require('google-panorama-by-location')
@@ -23,7 +23,7 @@ panorama(location, function (err, result) {
 })
 ```
 
-In Node, the request uses an undocumented API entry-point, using [nets](https://www.npmjs.com/package/nets). It only provides `{ id, latitude, longitude }`. This is mostly useful for unit testing.
+In Node, the request uses an undocumented API entry-point, using [xhr-request](https://www.npmjs.com/package/xhr-request). It only provides `{ id, latitude, longitude }`. This is mostly useful for unit testing.
 
 ## Usage
 
@@ -35,6 +35,8 @@ Gets the panorama data at the given `location`, which is an array of `[ latitude
 
 - `radius` - the radius to search, defaults to 50
 - `service` - (browser only) the Google API `StreetViewService` to use, defaults to a new instance
+
+In API v3.21+, you can also pass `preference` and `source` for the [StreetViewLocationRequest](https://developers.google.com/maps/documentation/javascript/3.exp/reference#StreetViewLocationRequest).
 
 The Node-style callback uses the form `(err, result)`, where `err` will be null if a street view was found. On success, `result` is an object containing:
 

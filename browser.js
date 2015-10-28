@@ -1,5 +1,5 @@
 /*globals google*/
-var defined = require('defined')
+var assign = require('object-assign')
 
 module.exports = function panoramaByLocation (location, opt, cb) {
   if (!location || !Array.isArray(location)) {
@@ -11,36 +11,45 @@ module.exports = function panoramaByLocation (location, opt, cb) {
     opt = {}
   }
 
-  opt = opt || {}
-
-  var radius = defined(opt.radius, 50)
+  opt = assign({
+    radius: 50
+  }, opt)
+  
   var service = opt.service
   if (!service) {
-    if (typeof google === 'undefined' || !google.maps) {
+    if (typeof google === 'undefined' || !google.maps || !google.maps.LatLng) {
       throw new Error('tried to use Google API without "google.maps" in global scope\n'
         + '  try using \'google-panorama-by-location/node.js\' instead')
     }
     service = new google.maps.StreetViewService()
   }
 
-  if (typeof service.getPanoramaByLocation !== 'function') {
-    throw new TypeError('must provide valid service with getPanoramaByLocation')
+  var latLng = new google.maps.LatLng(location[0], location[1])
+
+  if (typeof service.getPanorama === 'function') {
+    // v3.21
+    opt.location = latLng
+    service.getPanorama({
+      location: latLng,
+      preference: opt.preference,
+      radius: opt.radius,
+      source: opt.source
+    }, handleResponse)
+  } else if (typeof service.getPanoramaByLocation === 'function') {
+    // v3.20
+    service.getPanoramaByLocation(latLng, opt.radius, handleResponse)
+  } else {
+    throw new TypeError('must provide valid service with getPanorama or getPanoramaByLocation')
   }
-  service.getPanoramaByLocation({
-    lat: location[0],
-    lng: location[1]
-  }, radius, function (result, status) {
+
+  function handleResponse (result, status) {
     if (/^ok$/i.test(status)) {
       result.id = result.location.pano
       result.latitude = result.location.latLng.lat()
       result.longitude = result.location.latLng.lng()
       cb(null, result)
     } else {
-      cb(bail(location))
+      cb(new Error('could not find street view at: [ ' + location.join(', ') + ' ]'))
     }
-  })
-}
-
-function bail (location) {
-  return new Error('could not find street view at: [ ' + location.join(', ') + ' ]')
+  }
 }

@@ -19,6 +19,7 @@
     "budo": "^4.0.0",
     "faucet": "0.0.1",
     "garnish": "^2.1.3",
+    "object-assign": "^4.0.1",
     "tape": "^4.0.0",
     "testling": "^1.7.1"
   },
