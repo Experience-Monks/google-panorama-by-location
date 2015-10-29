@@ -11,9 +11,9 @@
     "url": "https://github.com/mattdesl"
   },
   "dependencies": {
-    "object-assign": "^4.0.1",
     "defined": "^1.0.0",
-    "nets": "^3.1.0"
+    "object-assign": "^4.0.1",
+    "xhr-request": "^1.0.1"
   },
   "devDependencies": {
     "browserify": "^10.2.4",

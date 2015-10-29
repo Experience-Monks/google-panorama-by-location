@@ -1,4 +1,4 @@
-var nets = require('nets')
+var request = require('xhr-request')
 var defined = require('defined')
 
 module.exports = function panoramaByLocation (location, opt, cb) {
@@ -15,7 +15,7 @@ module.exports = function panoramaByLocation (location, opt, cb) {
 
   var radius = defined(opt.radius, 50)
   var url = 'https://cbks0.google.com/cbk?cb_client=apiv3&authuser=0&hl=en&output=polygon&it=1%3A1&rank=closest&ll=' + location[0] + ',' + location[1] + '&radius=' + radius
-  nets({ url: url, json: true }, function (err, res, body) {
+  request(url, { json: true }, function (err, body, res) {
     if (err) {
       return cb(bail(location))
     }
