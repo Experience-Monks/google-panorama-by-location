@@ -52,7 +52,7 @@ In the browser, the `result` object will also contain other details from `Street
 
 ## node
 
-The [node.js](./node.js) entry point uses [nets](https://github.com/maxogden/nets) to request the JSON, so it works in both Node and the Browser. This means you can require it for quick unit testing in the browser, without bringing in the entire Google Client library. 
+The [node.js](./node.js) entry point uses [xhr-request](https://github.com/maxogden/xhr-request) to request the JSON, so it works in both Node and the Browser. This means you can require it for demos and quick unit testing in the browser, without bringing in the entire Google Client library. 
 
 ```js
 var panorama = require('google-panorama-by-location/node')
